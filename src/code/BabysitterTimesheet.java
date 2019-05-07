@@ -5,4 +5,8 @@ public class BabysitterTimesheet {
     public boolean isValidStartTime(int time) {
         return time >= EARLIEST_START_TIME;
     }
+
+    public boolean isValidEndTime(int time) {
+        return false;
+    }
 }
