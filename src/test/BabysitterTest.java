@@ -19,4 +19,10 @@ public class BabysitterTest {
         BabysitterTimesheet babysitterTimesheet = new BabysitterTimesheet();
         assertTrue(babysitterTimesheet.isValidStartTime(17));
     }
+
+    @Test
+    public void givenStartTimeWhenTimeIsAfter5ThenReturnTrue() {
+        BabysitterTimesheet babysitterTimesheet = new BabysitterTimesheet();
+        assertTrue(babysitterTimesheet.isValidStartTime(18));
+    }
 }
