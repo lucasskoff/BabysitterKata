@@ -1,10 +1,8 @@
 package code;
 
 public class BabysitterTimesheet {
-    public boolean isValidStartTime(int i) {
-        if(i >= 17) {
-            return true;
-        }
-        return false;
+    private static final int EARLIEST_START_TIME = 17;
+    public boolean isValidStartTime(int time) {
+        return time >= EARLIEST_START_TIME;
     }
 }
