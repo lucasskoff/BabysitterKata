@@ -15,22 +15,22 @@ public class BabysitterTest {
     }
 
     @Test
-    public void givenStartTimeWhenTimeIsBefore5ThenReturnFalse() {
+    public void givenStartTimeWhenTimeIsBefore5PmThenReturnFalse() {
         assertFalse(babysitterTimesheet.isValidStartTime(16));
     }
 
     @Test
-    public void givenStartTimeWhenTimeEquals5ThenReturnTrue() {
+    public void givenStartTimeWhenTimeEquals5PmThenReturnTrue() {
         assertTrue(babysitterTimesheet.isValidStartTime(17));
     }
 
     @Test
-    public void givenStartTimeWhenTimeIsAfter5ThenReturnTrue() {
+    public void givenStartTimeWhenTimeIsAfter5PmThenReturnTrue() {
         assertTrue(babysitterTimesheet.isValidStartTime(18));
     }
 
     @Test
-    public void givenEndTimeWhenTimeIsAfter4ThenReturnFalse() {
+    public void givenEndTimeWhenTimeIsAfter4AmThenReturnFalse() {
         assertFalse(babysitterTimesheet.isValidEndTime(5));
     }
 }
