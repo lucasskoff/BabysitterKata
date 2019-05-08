@@ -53,4 +53,9 @@ public class BabysitterTest {
     public void givenEndTimeWhenTimeIs6PmThenReturnTrue() {
         assertTrue(babysitterTimesheet.isValidEndTime(18));
     }
+
+    @Test
+    public void givenEndTimeWhenTimeIs4PmThenReturnFalse() {
+        assertFalse(babysitterTimesheet.isValidEndTime(16));
+    }
 }
