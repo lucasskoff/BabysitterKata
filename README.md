@@ -3,6 +3,7 @@ Created as part of my application to Pillar Technology and as an excercise in TD
 To run test cases simply use command:
 > mvn test
 
+Inside the code directory containing the pom.xml file. Maven was set up on a windows machine following this tutorial: https://docs.wso2.com/display/IS323/Installing+Apache+Maven+on+Windows
 Thank you and have a wonderful day. :)
 # Original Requirements:
 
