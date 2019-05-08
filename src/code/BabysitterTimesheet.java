@@ -7,15 +7,6 @@ public class BabysitterTimesheet {
     }
 
     public boolean isValidEndTime(int time) {
-        if(time == 23) {
-            return true;
-        }
-        if(time == 18) {
-            return true;
-        }
-        if(time <= 4) {
-            return true;
-        }
-        return false;
+        return (time >= 17 && time < 24) || time <= 4;
     }
 }
