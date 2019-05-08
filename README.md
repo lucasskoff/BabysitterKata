@@ -1,4 +1,11 @@
-##Original Requirements:
+## Author Notes:
+Created as part of my application to Pillar Technology and as an excercise in TDD. Uses JUnit 4.12 for test cases, Java 8 for code and Maven for build and dependencies. 
+To run test cases simply use command:
+> mvn test
+
+Inside the code directory containing the pom.xml file. Maven was set up on a windows machine following this tutorial: https://docs.wso2.com/display/IS323/Installing+Apache+Maven+on+Windows
+Thank you and have a wonderful day. :)
+# Original Requirements:
 
 ## Background
 This kata simulates a babysitter working and getting paid for one night.  The rules are pretty straight forward.
