@@ -10,6 +10,9 @@ public class BabysitterTimesheet {
         if(time == 23) {
             return true;
         }
+        if(time == 18) {
+            return true;
+        }
         if(time <= 4) {
             return true;
         }
