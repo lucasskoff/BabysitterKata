@@ -4,7 +4,7 @@ To run test cases simply use command:
 > mvn test
 
 Thank you and have a wonderful day. :)
-## Original Requirements:
+# Original Requirements:
 
 ## Background
 This kata simulates a babysitter working and getting paid for one night.  The rules are pretty straight forward.
