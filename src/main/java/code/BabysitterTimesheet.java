@@ -13,6 +13,6 @@ public class BabysitterTimesheet {
     }
 
     public boolean isValidTime(int startTime, int endTime) {
-        return false;
+        return isValidStartTime(startTime) && isValidEndTime(endTime);
     }
 }
