@@ -36,10 +36,14 @@ public class BabysitterTimesheet {
         }
         int payAmount = 0;
         for(int i = startTime; i < modifiedEndTime; i++) {
-            if(i < 23) {
-                payAmount += 15;
+            if(familyCode == 'A') {
+                if (i < 23) {
+                    payAmount += 15;
+                } else {
+                    payAmount += 20;
+                }
             } else {
-                payAmount += 20;
+                payAmount += 12;
             }
         }
         return payAmount;
