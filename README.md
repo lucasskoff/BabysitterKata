@@ -4,6 +4,8 @@ To build the code and run the test cases simply use command:
 > mvn test
 
 Inside the code directory containing the pom.xml file. Maven was set up on a windows machine following this tutorial: https://docs.wso2.com/display/IS323/Installing+Apache+Maven+on+Windows
+On Windows it is important to have the JAVA_HOME and M2_HOME environment variables set up in order to run mvn through the command line. 
+Details on setting up the JAVA_HOME variable: http://roufid.com/no-compiler-is-provided-in-this-environment/
 Thank you and have a wonderful day. :)
 # Original Requirements:
 
