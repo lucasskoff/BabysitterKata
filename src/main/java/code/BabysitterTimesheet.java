@@ -5,7 +5,20 @@ import constants.FamilyPayConstants;
 import constants.PaymentErrorCodes;
 import constants.TimeConstants;
 
+import javax.xml.stream.events.Characters;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BabysitterTimesheet {
+    private List<Character> familyCodeList;
+
+    public BabysitterTimesheet() {
+        familyCodeList = new ArrayList<>();
+        familyCodeList.add(FamilyCodeConstant.FAMILY_CODE_A);
+        familyCodeList.add(FamilyCodeConstant.FAMILY_CODE_B);
+        familyCodeList.add(FamilyCodeConstant.FAMILY_CODE_C);
+    }
+
     public boolean isValidStartTime(int time) {
         return (time >= TimeConstants.EARLIEST_START_TIME && time < TimeConstants.MIDNIGHT) || time < TimeConstants.LATEST_END_TIME;
     }
@@ -22,7 +35,7 @@ public class BabysitterTimesheet {
         if(!isValidTimePeriod(startTime, endTime)) {
             return PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
         }
-        if(familyCode != FamilyCodeConstant.FAMILY_CODE_A && familyCode != FamilyCodeConstant.FAMILY_CODE_B && familyCode != FamilyCodeConstant.FAMILY_CODE_C) {
+        if(!familyCodeList.contains(familyCode)) {
             return PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;
         }
         int modifiedEndTime = normalizeTime(endTime);
