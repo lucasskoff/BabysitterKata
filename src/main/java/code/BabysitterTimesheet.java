@@ -45,8 +45,10 @@ public class BabysitterTimesheet {
             } else {
                 if(i < 22) {
                     payAmount += 12;
-                } else {
+                } else if (i < 24){
                     payAmount += 8;
+                } else {
+                    payAmount += 16;
                 }
             }
         }

@@ -134,4 +134,9 @@ public class BabysitterTest {
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf11ForFamilyBReturn68() {
         assertEquals(68, babysitterTimesheet.computePay(EARLIEST_START_TIME, 23, 'B'));
     }
+
+    @Test
+    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf1AMForFamilyBReturn68() {
+        assertEquals(92, babysitterTimesheet.computePay(EARLIEST_START_TIME, 1, 'B'));
+    }
 }
