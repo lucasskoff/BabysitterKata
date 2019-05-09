@@ -3,8 +3,8 @@ package test;
 import code.BabysitterTimesheet;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 public class BabysitterTest {
     private static final int EARLIEST_START_TIME = 17;
@@ -98,5 +98,10 @@ public class BabysitterTest {
     @Test
     public void givenValidStartTimeEndTimeWhenStartTimeEndTimeIsSameTimeReturnFalse() {
         assertFalse(babysitterTimesheet.isValidTimePeriod(18, 18));
+    }
+
+    @Test
+    public void givenValidStartTimeEndTime1HourIntervalBefore11ForFamilyAReturn15() {
+        assertEquals(15, babysitterTimesheet.computePay(17, 16, 'A'));
     }
 }

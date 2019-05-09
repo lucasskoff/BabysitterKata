@@ -24,4 +24,8 @@ public class BabysitterTimesheet {
         }
         return isValidStartTime(startTime) && isValidEndTime(endTime);
     }
+
+    public int computePay(int startTime, int endTime, char familyCode) {
+        return 15;
+    }
 }
