@@ -1,8 +1,9 @@
 package code;
 
 public class BabysitterTimesheet {
-    private static final int EARLIEST_START_TIME = 17;
     private static final int LATEST_END_TIME = 4;
+    private static final int NOON = 12;
+    private static final int EARLIEST_START_TIME = 17;
     private static final int MIDNIGHT = 24;
 
 
@@ -16,8 +17,8 @@ public class BabysitterTimesheet {
 
     public boolean isValidTimePeriod(int startTime, int endTime) {
         int modifiedEndTime = endTime;
-        if(modifiedEndTime < 12) {
-            modifiedEndTime += 24;
+        if(modifiedEndTime < NOON) {
+            modifiedEndTime += MIDNIGHT;
         }
         if(modifiedEndTime <= startTime) {
             return false;
@@ -30,8 +31,8 @@ public class BabysitterTimesheet {
             return -1;
         }
         int modifiedEndTime = endTime;
-        if(endTime < 12) {
-            modifiedEndTime += 24;
+        if(endTime < NOON) {
+            modifiedEndTime += MIDNIGHT;
         }
         int payAmount = 0;
         for(int i = startTime; i < modifiedEndTime; i++) {
