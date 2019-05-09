@@ -7,6 +7,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BabysitterTest {
+    private static final int EARLIEST_START_TIME = 17;
+    private static final int LATEST_END_TIME = 4;
     private BabysitterTimesheet babysitterTimesheet;
     @Before
     public void setup() {
@@ -14,23 +16,23 @@ public class BabysitterTest {
     }
 
     @Test
-    public void givenStartTimeWhenTimeIsBefore5PmThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidStartTime(16));
+    public void givenStartTimeWhenTimeIsBeforeEarliestStartTimeThenReturnFalse() {
+        assertFalse(babysitterTimesheet.isValidStartTime(EARLIEST_START_TIME - 1));
     }
 
     @Test
-    public void givenStartTimeWhenTimeEquals5PmThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidStartTime(17));
+    public void givenStartTimeWhenTimeEqualsEarliestStartTimeThenReturnTrue() {
+        assertTrue(babysitterTimesheet.isValidStartTime(EARLIEST_START_TIME));
     }
 
     @Test
-    public void givenStartTimeWhenTimeIsAfter5PmThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidStartTime(18));
+    public void givenStartTimeWhenTimeIsAfterEarliestStartTimeThenReturnTrue() {
+        assertTrue(babysitterTimesheet.isValidStartTime(EARLIEST_START_TIME + 1));
     }
 
     @Test
-    public void givenStartTimeWhenTimeIsBefore4AMThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidStartTime(3));
+    public void givenStartTimeWhenTimeIsBeforeLatestEndTimeThenReturnTrue() {
+        assertTrue(babysitterTimesheet.isValidStartTime(LATEST_END_TIME - 1));
     }
 
     @Test
@@ -39,18 +41,18 @@ public class BabysitterTest {
     }
 
     @Test
-    public void givenEndTimeWhenTimeIsAfter4AmThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidEndTime(5));
+    public void givenEndTimeWhenTimeIsAfterLatestEndTimeThenReturnFalse() {
+        assertFalse(babysitterTimesheet.isValidEndTime(LATEST_END_TIME + 1));
     }
 
     @Test
-    public void givenEndTimeWhenTimeIs4AmThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidEndTime(4));
+    public void givenEndTimeWhenTimeIsLatestEndTimeThenReturnTrue() {
+        assertTrue(babysitterTimesheet.isValidEndTime(LATEST_END_TIME));
     }
 
     @Test
-    public void givenEndTimeWhenTimeIsBefore4AmThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidEndTime(3));
+    public void givenEndTimeWhenTimeIsBeforeLatestEndTimeThenReturnTrue() {
+        assertTrue(babysitterTimesheet.isValidEndTime(LATEST_END_TIME - 1));
     }
 
     @Test
@@ -64,23 +66,23 @@ public class BabysitterTest {
     }
 
     @Test
-    public void givenEndTimeWhenTimeIs4PmThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidEndTime(16));
+    public void givenEndTimeWhenTimeIsEarlierThanEarliestStartTimeThenReturnFalse() {
+        assertFalse(babysitterTimesheet.isValidEndTime(EARLIEST_START_TIME - 1));
     }
 
     @Test
-    public void givenEndTimeWhenTimeIs5PMThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidEndTime(17));
+    public void givenEndTimeWhenTimeIsEarliestStartTimeThenReturnFalse() {
+        assertFalse(babysitterTimesheet.isValidEndTime(EARLIEST_START_TIME));
     }
 
     @Test
     public void givenTimesWhenEndTimeBeforeStartTimeThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidTimePeriod(17, 16));
+        assertFalse(babysitterTimesheet.isValidTimePeriod(EARLIEST_START_TIME, EARLIEST_START_TIME - 1));
     }
 
     @Test
     public void givenTimeWhenStartTimeAndEndTimeAreValidReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidTimePeriod(17, 19));
+        assertTrue(babysitterTimesheet.isValidTimePeriod(EARLIEST_START_TIME, 19));
     }
 
     @Test
@@ -90,7 +92,7 @@ public class BabysitterTest {
 
     @Test
     public void givenValidStartTimeEndTimeWhenEndTimeIsAfterMidnightReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidTimePeriod(17, 4));
+        assertTrue(babysitterTimesheet.isValidTimePeriod(EARLIEST_START_TIME, LATEST_END_TIME));
     }
 
     @Test
