@@ -1,6 +1,6 @@
 ## Author Notes:
 Created as part of my application to Pillar Technology and as an excercise in TDD. Uses JUnit 4.12 for test cases, Java 8 for code and Maven for build and dependencies. 
-To run test cases simply use command:
+To build the code and run the test cases simply use command:
 > mvn test
 
 Inside the code directory containing the pom.xml file. Maven was set up on a windows machine following this tutorial: https://docs.wso2.com/display/IS323/Installing+Apache+Maven+on+Windows
