@@ -6,8 +6,6 @@ import constants.PaymentErrorCodes;
 import constants.TimeConstants;
 
 public class BabysitterTimesheet {
-
-
     public boolean isValidStartTime(int time) {
         return (time >= TimeConstants.EARLIEST_START_TIME && time < TimeConstants.MIDNIGHT) || time < TimeConstants.LATEST_END_TIME;
     }
@@ -17,11 +15,7 @@ public class BabysitterTimesheet {
     }
 
     public boolean isValidTimePeriod(int startTime, int endTime) {
-        int modifiedEndTime = normalizeTime(endTime);
-        if(modifiedEndTime <= startTime) {
-            return false;
-        }
-        return isValidStartTime(startTime) && isValidEndTime(endTime);
+        return normalizeTime(endTime) > startTime && isValidStartTime(startTime) && isValidEndTime(endTime);
     }
 
     public int computePay(int startTime, int endTime, char familyCode) {
