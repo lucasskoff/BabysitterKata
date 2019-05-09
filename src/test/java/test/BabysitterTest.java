@@ -2,6 +2,7 @@ package test;
 
 import code.BabysitterTimesheet;
 import constants.FamilyCodeConstant;
+import constants.FamilyPayConstants;
 import constants.TimeConstants;
 import org.junit.Before;
 import org.junit.Test;
@@ -103,7 +104,7 @@ public class BabysitterTest {
 
     @Test
     public void givenValidStartTimeEndTime1HourIntervalBefore11ForFamilyAReturn15() {
-        assertEquals(15, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_A));
+        assertEquals(FamilyPayConstants.FAMILY_A_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_A));
     }
 
     @Test
@@ -128,7 +129,7 @@ public class BabysitterTest {
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTime1HourLaterForFamilyBReturn12() {
-        assertEquals(12, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_B));
+        assertEquals(FamilyPayConstants.FAMILY_B_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_B));
     }
 
     @Test
@@ -148,7 +149,7 @@ public class BabysitterTest {
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf1HourLaterForFamilyCReturn21() {
-        assertEquals(21, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_C));
+        assertEquals(FamilyPayConstants.FAMILY_C_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_C));
     }
 
     @Test

@@ -1,14 +1,10 @@
 package code;
 
 import constants.FamilyCodeConstant;
+import constants.FamilyPayConstants;
 import constants.TimeConstants;
 
 public class BabysitterTimesheet {
-    private static final int FAMILY_A_BASE_PAY = 15;
-    private static final int FAMILY_A_POST_11_PAY = 20;
-    private static final int FAMILY_B_BASE_PAY = 12;
-    private static final int FAMILY_B_BETWEEN_10_PM_AND_MIDNIGHT_PAY = 8;
-    private static final int FAMILY_B_POST_MIDNIGHT_PAY = 16;
 
 
     public boolean isValidStartTime(int time) {
@@ -55,20 +51,20 @@ public class BabysitterTimesheet {
     }
 
     private int computePayFamilyA(int hour) {
-        return hour < TimeConstants.ELEVEN_PM ? FAMILY_A_BASE_PAY : FAMILY_A_POST_11_PAY;
+        return hour < TimeConstants.ELEVEN_PM ? FamilyPayConstants.FAMILY_A_BASE_PAY : FamilyPayConstants.FAMILY_A_POST_11_PAY;
     }
 
     private int computePayFamilyB(int hour) {
         if(hour < TimeConstants.TEN_PM) {
-            return FAMILY_B_BASE_PAY;
+            return FamilyPayConstants.FAMILY_B_BASE_PAY;
         } else if (hour < TimeConstants.MIDNIGHT){
-            return FAMILY_B_BETWEEN_10_PM_AND_MIDNIGHT_PAY;
+            return FamilyPayConstants.FAMILY_B_BETWEEN_10_PM_AND_MIDNIGHT_PAY;
         } else {
-            return FAMILY_B_POST_MIDNIGHT_PAY;
+            return FamilyPayConstants.FAMILY_B_POST_MIDNIGHT_PAY;
         }
     }
 
     private int computePayFamilyC(int hour) {
-        return hour < TimeConstants.NINE_PM ? 21 : 15;
+        return hour < TimeConstants.NINE_PM ? FamilyPayConstants.FAMILY_C_BASE_PAY : FamilyPayConstants.FAMILY_C_POST_9_PM_PAY;
     }
 }
