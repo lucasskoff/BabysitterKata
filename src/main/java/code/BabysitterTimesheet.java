@@ -26,6 +26,9 @@ public class BabysitterTimesheet {
     }
 
     public int computePay(int startTime, int endTime, char familyCode) {
+        if(!isValidTimePeriod(startTime, endTime)) {
+            return -1;
+        }
         return 15;
     }
 }
