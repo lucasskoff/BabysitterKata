@@ -92,6 +92,11 @@ public class BabysitterTest {
     public void givenValidStartTimeEndTimeWhenEndTimeIsBeforeStartTimeReturnFalse() {
         assertFalse(babysitterTimesheet.isValidTimePeriod(19, 18));
     }
+	
+	@Test
+    public void givenValidStartTimeEndTimeWhenBothAreAfterMidnightReturnTrue() {
+        assertTrue(babysitterTimesheet.isValidTimePeriod(2, 4));
+    }
 
     @Test
     public void givenValidStartTimeEndTimeWhenEndTimeIsAfterMidnightReturnTrue() {
@@ -131,6 +136,11 @@ public class BabysitterTest {
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestForFamilyAReturn190() {
         assertEquals(190, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, FamilyCodeConstant.FAMILY_CODE_A));
+    }
+	
+	@Test
+    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyCReturn140() {
+        assertEquals(40, babysitterTimesheet.computePay(2, 4, FamilyCodeConstant.FAMILY_CODE_A));
     }
 
     @Test

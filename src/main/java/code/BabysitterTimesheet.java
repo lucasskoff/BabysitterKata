@@ -28,7 +28,7 @@ public class BabysitterTimesheet {
     }
 
     public boolean isValidTimePeriod(int startTime, int endTime) {
-        return normalizeTime(endTime) > startTime && isValidStartTime(startTime) && isValidEndTime(endTime);
+        return normalizeTime(endTime) > normalizeTime(startTime) && isValidStartTime(startTime) && isValidEndTime(endTime);
     }
 
     public int computePay(int startTime, int endTime, char familyCode) {
@@ -39,8 +39,9 @@ public class BabysitterTimesheet {
             return PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;
         }
         int modifiedEndTime = normalizeTime(endTime);
+		int modifiedStartTime = normalizeTime(startTime);
         int payAmount = 0;
-        for(int i = startTime; i < modifiedEndTime; i++) {
+        for(int i = modifiedStartTime; i < modifiedEndTime; i++) {
             if(familyCode == FamilyCodeConstant.FAMILY_CODE_A) {
                 payAmount += computePayFamilyA(i);
             } else if (familyCode == FamilyCodeConstant.FAMILY_CODE_B){
