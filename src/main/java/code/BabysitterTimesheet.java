@@ -43,7 +43,11 @@ public class BabysitterTimesheet {
                     payAmount += 20;
                 }
             } else {
-                payAmount += 12;
+                if(i < 22) {
+                    payAmount += 12;
+                } else {
+                    payAmount += 8;
+                }
             }
         }
         return payAmount;
