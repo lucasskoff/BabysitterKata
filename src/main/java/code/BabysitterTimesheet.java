@@ -46,8 +46,10 @@ public class BabysitterTimesheet {
         for(int i = startTime; i < modifiedEndTime; i++) {
             if(familyCode == FAMILY_CODE_A) {
                 payAmount += computePayFamilyA(i);
-            } else {
+            } else if (familyCode == 'B'){
                 payAmount += computePayFamilyB(i);
+            } else {
+                payAmount += 15;
             }
         }
         return payAmount;
