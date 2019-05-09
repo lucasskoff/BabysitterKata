@@ -49,7 +49,11 @@ public class BabysitterTimesheet {
             } else if (familyCode == 'B'){
                 payAmount += computePayFamilyB(i);
             } else {
-                payAmount += 21;
+                if(i < 21) {
+                    payAmount += 21;
+                } else {
+                    payAmount += 15;
+                }
             }
         }
         return payAmount;
