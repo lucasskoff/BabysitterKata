@@ -80,6 +80,11 @@ public class BabysitterTest {
 
     @Test
     public void givenTimeWhenStartTimeAndEndTimeAreValidReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidTimePeriod(17, 4));
+        assertTrue(babysitterTimesheet.isValidTimePeriod(17, 19));
+    }
+
+    @Test
+    public void givenValidStartTimeEndTimeWhenEndTimeIsBeforeStartTimeReturnFalse() {
+        assertFalse(babysitterTimesheet.isValidTimePeriod(19, 18));
     }
 }
