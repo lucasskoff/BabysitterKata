@@ -7,7 +7,7 @@ public class BabysitterTimesheet {
 
 
     public boolean isValidStartTime(int time) {
-        return time >= EARLIEST_START_TIME || time < LATEST_END_TIME;
+        return (time >= EARLIEST_START_TIME && time < MIDNIGHT) || time < LATEST_END_TIME;
     }
 
     public boolean isValidEndTime(int time) {
