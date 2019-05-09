@@ -17,10 +17,7 @@ public class BabysitterTimesheet {
     }
 
     public boolean isValidTimePeriod(int startTime, int endTime) {
-        int modifiedEndTime = endTime;
-        if(modifiedEndTime < TimeConstants.NOON) {
-            modifiedEndTime += TimeConstants.MIDNIGHT;
-        }
+        int modifiedEndTime = normalizeTime(endTime);
         if(modifiedEndTime <= startTime) {
             return false;
         }
@@ -34,10 +31,7 @@ public class BabysitterTimesheet {
         if(familyCode != FamilyCodeConstant.FAMILY_CODE_A && familyCode != FamilyCodeConstant.FAMILY_CODE_B && familyCode != FamilyCodeConstant.FAMILY_CODE_C) {
             return PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;
         }
-        int modifiedEndTime = endTime;
-        if(endTime < TimeConstants.NOON) {
-            modifiedEndTime += TimeConstants.MIDNIGHT;
-        }
+        int modifiedEndTime = normalizeTime(endTime);
         int payAmount = 0;
         for(int i = startTime; i < modifiedEndTime; i++) {
             if(familyCode == FamilyCodeConstant.FAMILY_CODE_A) {
@@ -67,5 +61,9 @@ public class BabysitterTimesheet {
 
     private int computePayFamilyC(int hour) {
         return hour < TimeConstants.NINE_PM ? FamilyPayConstants.FAMILY_C_BASE_PAY : FamilyPayConstants.FAMILY_C_POST_9_PM_PAY;
+    }
+
+    private int normalizeTime(int hour) {
+        return hour < TimeConstants.NOON ? hour + TimeConstants.MIDNIGHT : hour;
     }
 }
