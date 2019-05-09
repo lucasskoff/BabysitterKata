@@ -29,9 +29,17 @@ public class BabysitterTimesheet {
         if(!isValidTimePeriod(startTime, endTime)) {
             return -1;
         }
+        int modifiedEndTime = endTime;
+        if(endTime < 12) {
+            modifiedEndTime += 24;
+        }
         int payAmount = 0;
-        for(int i = startTime; i < endTime; i++) {
-            payAmount += 15;
+        for(int i = startTime; i < modifiedEndTime; i++) {
+            if(i < 23) {
+                payAmount += 15;
+            } else {
+                payAmount += 20;
+            }
         }
         return payAmount;
     }
