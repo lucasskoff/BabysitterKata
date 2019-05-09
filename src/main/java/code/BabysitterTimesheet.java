@@ -48,11 +48,7 @@ public class BabysitterTimesheet {
             } else if (familyCode == FamilyCodeConstant.FAMILY_CODE_B){
                 payAmount += computePayFamilyB(i);
             } else {
-                if(i < 21) {
-                    payAmount += 21;
-                } else {
-                    payAmount += 15;
-                }
+                payAmount += computePayFamilyC(i);
             }
         }
         return payAmount;
@@ -70,5 +66,9 @@ public class BabysitterTimesheet {
         } else {
             return FAMILY_B_POST_MIDNIGHT_PAY;
         }
+    }
+
+    private int computePayFamilyC(int hour) {
+        return hour < TimeConstants.NINE_PM ? 21 : 15;
     }
 }
