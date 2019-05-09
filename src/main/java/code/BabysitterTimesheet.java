@@ -19,7 +19,7 @@ public class BabysitterTimesheet {
         if(modifiedEndTime < 12) {
             modifiedEndTime += 24;
         }
-        if(modifiedEndTime < startTime) {
+        if(modifiedEndTime <= startTime) {
             return false;
         }
         return isValidStartTime(startTime) && isValidEndTime(endTime);
