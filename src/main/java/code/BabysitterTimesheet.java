@@ -39,6 +39,9 @@ public class BabysitterTimesheet {
         if(!isValidTimePeriod(startTime, endTime)) {
             return -1;
         }
+        if(familyCode != FamilyCodeConstant.FAMILY_CODE_A && familyCode != FamilyCodeConstant.FAMILY_CODE_B && familyCode != FamilyCodeConstant.FAMILY_CODE_C) {
+            return -2;
+        }
         int modifiedEndTime = endTime;
         if(endTime < NOON) {
             modifiedEndTime += MIDNIGHT;
