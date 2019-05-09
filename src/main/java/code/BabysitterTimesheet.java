@@ -4,7 +4,15 @@ public class BabysitterTimesheet {
     private static final int LATEST_END_TIME = 4;
     private static final int NOON = 12;
     private static final int EARLIEST_START_TIME = 17;
+    private static final int TEN_PM = 22;
+    private static final int ELEVEN_PM = 23;
     private static final int MIDNIGHT = 24;
+    private static final char FAMILY_CODE_A = 'A';
+    private static final int FAMILY_A_BASE_PAY = 15;
+    private static final int FAMILY_A_POST_11_PAY = 20;
+    private static final int FAMILY_B_BASE_PAY = 12;
+    private static final int FAMILY_B_BETWEEN_10_PM_AND_MIDNIGHT_PAY = 8;
+    private static final int FAMILY_B_POST_MIDNIGHT_PAY = 16;
 
 
     public boolean isValidStartTime(int time) {
@@ -36,22 +44,26 @@ public class BabysitterTimesheet {
         }
         int payAmount = 0;
         for(int i = startTime; i < modifiedEndTime; i++) {
-            if(familyCode == 'A') {
-                if (i < 23) {
-                    payAmount += 15;
-                } else {
-                    payAmount += 20;
-                }
+            if(familyCode == FAMILY_CODE_A) {
+                payAmount += computePayFamilyA(i);
             } else {
-                if(i < 22) {
-                    payAmount += 12;
-                } else if (i < 24){
-                    payAmount += 8;
-                } else {
-                    payAmount += 16;
-                }
+                payAmount += computePayFamilyB(i);
             }
         }
         return payAmount;
+    }
+
+    private int computePayFamilyA(int hour) {
+        return hour < ELEVEN_PM ? FAMILY_A_BASE_PAY : FAMILY_A_POST_11_PAY;
+    }
+
+    private int computePayFamilyB(int hour) {
+        if(hour < TEN_PM) {
+            return FAMILY_B_BASE_PAY;
+        } else if (hour < MIDNIGHT){
+            return FAMILY_B_BETWEEN_10_PM_AND_MIDNIGHT_PAY;
+        } else {
+            return FAMILY_B_POST_MIDNIGHT_PAY;
+        }
     }
 }
