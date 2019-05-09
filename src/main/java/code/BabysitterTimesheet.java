@@ -1,5 +1,7 @@
 package code;
 
+import constants.FamilyCodeConstant;
+
 public class BabysitterTimesheet {
     private static final int LATEST_END_TIME = 4;
     private static final int NOON = 12;
@@ -7,7 +9,6 @@ public class BabysitterTimesheet {
     private static final int TEN_PM = 22;
     private static final int ELEVEN_PM = 23;
     private static final int MIDNIGHT = 24;
-    private static final char FAMILY_CODE_A = 'A';
     private static final int FAMILY_A_BASE_PAY = 15;
     private static final int FAMILY_A_POST_11_PAY = 20;
     private static final int FAMILY_B_BASE_PAY = 12;
@@ -44,9 +45,9 @@ public class BabysitterTimesheet {
         }
         int payAmount = 0;
         for(int i = startTime; i < modifiedEndTime; i++) {
-            if(familyCode == FAMILY_CODE_A) {
+            if(familyCode == FamilyCodeConstant.FAMILY_CODE_A) {
                 payAmount += computePayFamilyA(i);
-            } else if (familyCode == 'B'){
+            } else if (familyCode == FamilyCodeConstant.FAMILY_CODE_B){
                 payAmount += computePayFamilyB(i);
             } else {
                 if(i < 21) {
