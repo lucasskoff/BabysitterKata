@@ -2,6 +2,7 @@ package code;
 
 import constants.FamilyCodeConstant;
 import constants.FamilyPayConstants;
+import constants.PaymentErrorCodes;
 import constants.TimeConstants;
 
 public class BabysitterTimesheet {
@@ -28,10 +29,10 @@ public class BabysitterTimesheet {
 
     public int computePay(int startTime, int endTime, char familyCode) {
         if(!isValidTimePeriod(startTime, endTime)) {
-            return -1;
+            return PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
         }
         if(familyCode != FamilyCodeConstant.FAMILY_CODE_A && familyCode != FamilyCodeConstant.FAMILY_CODE_B && familyCode != FamilyCodeConstant.FAMILY_CODE_C) {
-            return -2;
+            return PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;
         }
         int modifiedEndTime = endTime;
         if(endTime < TimeConstants.NOON) {
