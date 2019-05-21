@@ -1,7 +1,6 @@
 package test;
 
-import code.BabysitterTimesheet;
-import constants.FamilyCodeConstant;
+import code.*;
 import constants.FamilyPayConstants;
 import constants.PaymentErrorCodes;
 import constants.TimeConstants;
@@ -13,9 +12,16 @@ import static org.junit.Assert.*;
 public class BabysitterTest {
     private static final int ONE_HOUR = 1;
     private BabysitterTimesheet babysitterTimesheet;
+    private FamilyCodeA familyCodeA;
+    private FamilyCodeB familyCodeB;
+    private FamilyCodeC familyCodeC;
+
     @Before
     public void setup() {
        babysitterTimesheet = new BabysitterTimesheet();
+       familyCodeA = new FamilyCodeA();
+       familyCodeB = new FamilyCodeB();
+       familyCodeC = new FamilyCodeC();
     }
 
     @Test
@@ -110,71 +116,71 @@ public class BabysitterTest {
 
     @Test
     public void givenInvalidStartTimeEndTimeForFamilyAReturnError() {
-        assertEquals(PaymentErrorCodes.INVALID_HOURS_ERROR_CODE, babysitterTimesheet.computePay(16, 16, FamilyCodeConstant.FAMILY_CODE_A));
+        assertEquals(PaymentErrorCodes.INVALID_HOURS_ERROR_CODE, babysitterTimesheet.computePay(16, 16, familyCodeA));
     }
 
     @Test
     public void givenValidStartTimeAndEndTimeForInvalidFamilyCodeReturnError() {
-        assertEquals(PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, 'D'));
+        assertEquals(PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, null));
     }
 
     @Test
     public void givenValidStartTimeEndTime1HourIntervalBefore11ForFamilyAReturn15() {
-        assertEquals(FamilyPayConstants.FAMILY_A_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_A));
+        assertEquals(FamilyPayConstants.FAMILY_A_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeA));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf11ForFamilyAReturn90() {
-        assertEquals(90, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, FamilyCodeConstant.FAMILY_CODE_A));
+        assertEquals(90, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, familyCodeA));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfMidnightForFamilyAReturn110() {
-        assertEquals(110, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 0, FamilyCodeConstant.FAMILY_CODE_A));
+        assertEquals(110, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 0, familyCodeA));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestForFamilyAReturn190() {
-        assertEquals(190, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, FamilyCodeConstant.FAMILY_CODE_A));
+        assertEquals(190, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeA));
     }
 	
 	@Test
-    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyCReturn140() {
-        assertEquals(40, babysitterTimesheet.computePay(2, 4, FamilyCodeConstant.FAMILY_CODE_A));
+    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyAReturn40() {
+        assertEquals(40, babysitterTimesheet.computePay(2, 4, familyCodeA));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTime1HourLaterForFamilyBReturn12() {
-        assertEquals(FamilyPayConstants.FAMILY_B_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_B));
+        assertEquals(FamilyPayConstants.FAMILY_B_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeB));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf11ForFamilyBReturn68() {
-        assertEquals(68, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, FamilyCodeConstant.FAMILY_CODE_B));
+        assertEquals(68, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, familyCodeB));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf1AMForFamilyBReturn92() {
-        assertEquals(92, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 1, FamilyCodeConstant.FAMILY_CODE_B));
+        assertEquals(92, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 1, familyCodeB));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyBReturn140() {
-        assertEquals(140, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, FamilyCodeConstant.FAMILY_CODE_B));
+        assertEquals(140, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeB));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf1HourLaterForFamilyCReturn21() {
-        assertEquals(FamilyPayConstants.FAMILY_C_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, FamilyCodeConstant.FAMILY_CODE_C));
+        assertEquals(FamilyPayConstants.FAMILY_C_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeC));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf10PMForFamilyCReturn99() {
-        assertEquals(99, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 22, FamilyCodeConstant.FAMILY_CODE_C));
+        assertEquals(99, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 22, familyCodeC));
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyCReturn189() {
-        assertEquals(189, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, FamilyCodeConstant.FAMILY_CODE_C));
+        assertEquals(189, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeC));
     }
 }
