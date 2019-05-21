@@ -140,4 +140,11 @@ public class BabysitterTest {
         int expected = PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFakeFamilyReturn11() {
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeFake);
+        int expected = 11;
+        assertEquals(expected, actual);
+    }
 }
