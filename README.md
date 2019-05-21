@@ -1,3 +1,6 @@
+## Version 2:
+Based on the feedback from the kata I implemented OO design by moving the Family Codes from characters to classes implementing a new Family Code Interface. As part of this I created new test classes for each Family Code Class and a fake class to have a baseline for Babysitter Timesheet. Going back through the code was a great excercise in both OO-design and TDD.
+
 ## Author Notes:
 Created as part of my application to Pillar Technology and as an excercise in TDD. Uses JUnit 4.12 for test cases, Java 8 for code and Maven for build and dependencies. 
 To build the code and run the test cases simply use command:
@@ -10,6 +13,7 @@ On Windows it is important to have the JAVA_HOME and M2_HOME environment variabl
 Details on setting up the JAVA_HOME variable: http://roufid.com/no-compiler-is-provided-in-this-environment/
 
 Thank you and have a wonderful day. :)
+
 # Original Requirements:
 
 ## Background
