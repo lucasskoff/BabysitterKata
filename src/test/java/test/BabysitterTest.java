@@ -26,161 +26,207 @@ public class BabysitterTest {
 
     @Test
     public void givenStartTimeWhenTimeIsBeforeEarliestStartTimeThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidStartTime(TimeConstants.EARLIEST_START_TIME - ONE_HOUR));
+        boolean actual = babysitterTimesheet.isValidStartTime(TimeConstants.EARLIEST_START_TIME - ONE_HOUR);
+        assertFalse(actual);
     }
 
     @Test
     public void givenStartTimeWhenTimeEqualsEarliestStartTimeThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidStartTime(TimeConstants.EARLIEST_START_TIME));
+        boolean actual = babysitterTimesheet.isValidStartTime(TimeConstants.EARLIEST_START_TIME);
+        assertTrue(actual);
     }
 
     @Test
     public void givenStartTimeWhenTimeIsAfterEarliestStartTimeThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidStartTime(TimeConstants.EARLIEST_START_TIME + ONE_HOUR));
+        boolean actual = babysitterTimesheet.isValidStartTime(TimeConstants.EARLIEST_START_TIME + ONE_HOUR);
+        assertTrue(actual);
     }
 
     @Test
     public void givenStartTimeWhenTimeIsBeforeLatestEndTimeThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidStartTime(TimeConstants.LATEST_END_TIME - ONE_HOUR));
+        boolean actual = babysitterTimesheet.isValidStartTime(TimeConstants.LATEST_END_TIME - ONE_HOUR);
+        assertTrue(actual);
     }
 
     @Test
     public void givenStartTimeWhenTimeIsNotValidNumberThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidStartTime(25));
+        boolean actual = babysitterTimesheet.isValidStartTime(25);
+        assertFalse(actual);
     }
 
     @Test
     public void givenEndTimeWhenTimeIsAfterLatestEndTimeThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidEndTime(TimeConstants.LATEST_END_TIME + ONE_HOUR));
+        boolean actual = babysitterTimesheet.isValidEndTime(TimeConstants.LATEST_END_TIME + ONE_HOUR);
+        assertFalse(actual);
     }
 
     @Test
     public void givenEndTimeWhenTimeIsLatestEndTimeThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidEndTime(TimeConstants.LATEST_END_TIME));
+        boolean actual = babysitterTimesheet.isValidEndTime(TimeConstants.LATEST_END_TIME);
+        assertTrue(actual);
     }
 
     @Test
     public void givenEndTimeWhenTimeIsBeforeLatestEndTimeThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidEndTime(TimeConstants.LATEST_END_TIME - ONE_HOUR));
+        boolean actual = babysitterTimesheet.isValidEndTime(TimeConstants.LATEST_END_TIME - ONE_HOUR);
+        assertTrue(actual);
     }
 
     @Test
     public void givenEndTimeWhenTimeIs11PmThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidEndTime(23));
+        boolean actual = babysitterTimesheet.isValidEndTime(23);
+        assertTrue(actual);
     }
 
     @Test
     public void givenEndTimeWhenTimeIs6PmThenReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidEndTime(18));
+        boolean actual = babysitterTimesheet.isValidEndTime(18);
+        assertTrue(actual);
     }
 
     @Test
     public void givenEndTimeWhenTimeIsEarlierThanEarliestStartTimeThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidEndTime(TimeConstants.EARLIEST_START_TIME - ONE_HOUR));
+        boolean actual = babysitterTimesheet.isValidEndTime(TimeConstants.EARLIEST_START_TIME - ONE_HOUR);
+        assertFalse(actual);
     }
 
     @Test
     public void givenEndTimeWhenTimeIsEarliestStartTimeThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidEndTime(TimeConstants.EARLIEST_START_TIME));
+        boolean actual = babysitterTimesheet.isValidEndTime(TimeConstants.EARLIEST_START_TIME);
+        assertFalse(actual);
     }
 
     @Test
     public void givenTimesWhenEndTimeBeforeStartTimeThenReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidTimePeriod(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME - ONE_HOUR));
+        boolean actual = babysitterTimesheet.isValidTimePeriod(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME - ONE_HOUR);
+        assertFalse(actual);
     }
 
     @Test
     public void givenTimeWhenStartTimeAndEndTimeAreValidReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidTimePeriod(TimeConstants.EARLIEST_START_TIME, 19));
+        boolean actual = babysitterTimesheet.isValidTimePeriod(TimeConstants.EARLIEST_START_TIME, 19);
+        assertTrue(actual);
     }
 
     @Test
     public void givenValidStartTimeEndTimeWhenEndTimeIsBeforeStartTimeReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidTimePeriod(19, 18));
+        boolean actual = babysitterTimesheet.isValidTimePeriod(19, 18);
+        assertFalse(actual);
     }
 	
 	@Test
     public void givenValidStartTimeEndTimeWhenBothAreAfterMidnightReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidTimePeriod(2, 4));
+        boolean actual = babysitterTimesheet.isValidTimePeriod(2, 4);
+        assertTrue(actual);
     }
 
     @Test
     public void givenValidStartTimeEndTimeWhenEndTimeIsAfterMidnightReturnTrue() {
-        assertTrue(babysitterTimesheet.isValidTimePeriod(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME));
+        boolean actual = babysitterTimesheet.isValidTimePeriod(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME);
+        assertTrue(actual);
     }
 
     @Test
     public void givenValidStartTimeEndTimeWhenStartTimeEndTimeIsSameTimeReturnFalse() {
-        assertFalse(babysitterTimesheet.isValidTimePeriod(18, 18));
+        boolean actual = babysitterTimesheet.isValidTimePeriod(18, 18);
+        assertFalse(actual);
     }
 
     @Test
     public void givenInvalidStartTimeEndTimeForFamilyAReturnError() {
-        assertEquals(PaymentErrorCodes.INVALID_HOURS_ERROR_CODE, babysitterTimesheet.computePay(16, 16, familyCodeA));
+        int actual = babysitterTimesheet.computePay(16, 16, familyCodeA);
+        int expected = PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeAndEndTimeForInvalidFamilyCodeReturnError() {
-        assertEquals(PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, null));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, null);
+        int expected = PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeEndTime1HourIntervalBefore11ForFamilyAReturn15() {
-        assertEquals(FamilyPayConstants.FAMILY_A_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeA));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeA);
+        int expected = FamilyPayConstants.FAMILY_A_BASE_PAY;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf11ForFamilyAReturn90() {
-        assertEquals(90, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, familyCodeA));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, familyCodeA);
+        int expected = 90;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfMidnightForFamilyAReturn110() {
-        assertEquals(110, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 0, familyCodeA));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 0, familyCodeA);
+        int expected = 110;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestForFamilyAReturn190() {
-        assertEquals(190, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeA));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeA);
+        int expected = 190;
+        assertEquals(expected, actual);
     }
 	
 	@Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyAReturn40() {
-        assertEquals(40, babysitterTimesheet.computePay(2, 4, familyCodeA));
+        int actual = babysitterTimesheet.computePay(2, 4, familyCodeA);
+        int expected = 40;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTime1HourLaterForFamilyBReturn12() {
-        assertEquals(FamilyPayConstants.FAMILY_B_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeB));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeB);
+        int expected = FamilyPayConstants.FAMILY_B_BASE_PAY;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf11ForFamilyBReturn68() {
-        assertEquals(68, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, familyCodeB));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, familyCodeB);
+        int expected = 68;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf1AMForFamilyBReturn92() {
-        assertEquals(92, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 1, familyCodeB));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 1, familyCodeB);
+        int expected = 92;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyBReturn140() {
-        assertEquals(140, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeB));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeB);
+        int expected = 140;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf1HourLaterForFamilyCReturn21() {
-        assertEquals(FamilyPayConstants.FAMILY_C_BASE_PAY, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeC));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeC);
+        int expected = FamilyPayConstants.FAMILY_C_BASE_PAY;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf10PMForFamilyCReturn99() {
-        assertEquals(99, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 22, familyCodeC));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 22, familyCodeC);
+        int expected = 99;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyCReturn189() {
-        assertEquals(189, babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeC));
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeC);
+        int expected = 189;
+        assertEquals(expected, actual);
     }
 }
