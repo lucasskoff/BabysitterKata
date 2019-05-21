@@ -156,23 +156,9 @@ public class BabysitterTest {
     }
 
     @Test
-    public void givenValidStartTimeEndTime1HourIntervalBefore11ForFamilyAReturn15() {
-        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.EARLIEST_START_TIME + ONE_HOUR, familyCodeA);
-        int expected = FamilyPayConstants.FAMILY_A_BASE_PAY;
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOf11ForFamilyAReturn90() {
         int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 23, familyCodeA);
         int expected = 90;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfMidnightForFamilyAReturn110() {
-        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, 0, familyCodeA);
-        int expected = 110;
         assertEquals(expected, actual);
     }
 
