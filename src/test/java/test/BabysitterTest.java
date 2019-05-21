@@ -135,13 +135,6 @@ public class BabysitterTest {
     }
 
     @Test
-    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFakeFamilyReturn11() {
-        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeFake);
-        int expected = 11;
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void givenValidStartTimeAndEndTimeForInvalidFamilyCodeReturnError() {
         int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, null);
         int expected = PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;

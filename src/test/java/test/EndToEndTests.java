@@ -11,6 +11,7 @@ public class EndToEndTests {
     private FamilyInterface familyCodeA;
     private FamilyInterface familyCodeB;
     private FamilyInterface familyCodeC;
+    private FamilyInterface familyCodeFake;
     private BabysitterTimesheet babysitterTimesheet;
 
     @Before
@@ -19,6 +20,14 @@ public class EndToEndTests {
         familyCodeA = new FamilyCodeA();
         familyCodeB = new FamilyCodeB();
         familyCodeC = new FamilyCodeC();
+        familyCodeFake = new FamilyCodeFake();
+    }
+
+    @Test
+    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFakeFamilyReturn11() {
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeFake);
+        int expected = 11;
+        assertEquals(expected, actual);
     }
 
     @Test
