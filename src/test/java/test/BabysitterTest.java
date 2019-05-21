@@ -229,4 +229,12 @@ public class BabysitterTest {
         int expected = 189;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFakeFamilyReturn11() {
+        FamilyInterface familyFake = new FamilyCodeFake();
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyFake);
+        int expected = 11;
+        assertEquals(expected, actual);
+    }
 }
