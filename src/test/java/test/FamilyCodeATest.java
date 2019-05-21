@@ -20,7 +20,7 @@ public class FamilyCodeATest {
     }
 
     @Test
-    public void givenEaliestHourReturnFamilyCodeABasePay() {
+    public void givenEarliestHourReturnFamilyCodeABasePay() {
         int actual = familyCodeA.computePay(TimeConstants.EARLIEST_START_TIME);
         int expected = FamilyPayConstants.FAMILY_A_BASE_PAY;
         assertEquals(expected, actual);
