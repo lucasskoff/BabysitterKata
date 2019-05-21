@@ -133,9 +133,10 @@ public class BabysitterTest {
     }
 
     @Test
-    public void givenInvalidStartTimeEndTimeForFamilyAReturnError() {
-        int actual = babysitterTimesheet.computePay(16, 16, familyCodeA);
-        int expected = PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
+    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFakeFamilyReturn11() {
+        FamilyInterface familyFake = new FamilyCodeFake();
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyFake);
+        int expected = 11;
         assertEquals(expected, actual);
     }
 
@@ -143,6 +144,13 @@ public class BabysitterTest {
     public void givenValidStartTimeAndEndTimeForInvalidFamilyCodeReturnError() {
         int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, null);
         int expected = PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void givenInvalidStartTimeEndTimeForFamilyAReturnError() {
+        int actual = babysitterTimesheet.computePay(16, 16, familyCodeA);
+        int expected = PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
         assertEquals(expected, actual);
     }
 
@@ -227,14 +235,6 @@ public class BabysitterTest {
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFamilyCReturn189() {
         int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeC);
         int expected = 189;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFakeFamilyReturn11() {
-        FamilyInterface familyFake = new FamilyCodeFake();
-        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyFake);
-        int expected = 11;
         assertEquals(expected, actual);
     }
 }
