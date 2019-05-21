@@ -15,6 +15,7 @@ public class BabysitterTest {
     private FamilyCodeA familyCodeA;
     private FamilyCodeB familyCodeB;
     private FamilyCodeC familyCodeC;
+    private FamilyCodeFake familyCodeFake;
 
     @Before
     public void setup() {
@@ -22,6 +23,7 @@ public class BabysitterTest {
        familyCodeA = new FamilyCodeA();
        familyCodeB = new FamilyCodeB();
        familyCodeC = new FamilyCodeC();
+       familyCodeFake = new FamilyCodeFake();
     }
 
     @Test
@@ -134,8 +136,7 @@ public class BabysitterTest {
 
     @Test
     public void givenValidStartTimeOfEarliestPossibleAndEndTimeOfLatestPossibleForFakeFamilyReturn11() {
-        FamilyInterface familyFake = new FamilyCodeFake();
-        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyFake);
+        int actual = babysitterTimesheet.computePay(TimeConstants.EARLIEST_START_TIME, TimeConstants.LATEST_END_TIME, familyCodeFake);
         int expected = 11;
         assertEquals(expected, actual);
     }
@@ -149,8 +150,7 @@ public class BabysitterTest {
 
     @Test
     public void givenInvalidStartTimeEndTimeForFamilyAReturnError() {
-        FamilyInterface familyFake = new FamilyCodeFake();
-        int actual = babysitterTimesheet.computePay(16, 16, familyFake);
+        int actual = babysitterTimesheet.computePay(16, 16, familyCodeFake);
         int expected = PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
         assertEquals(expected, actual);
     }
