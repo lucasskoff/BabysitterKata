@@ -1,7 +1,6 @@
 package test;
 
 import code.*;
-import constants.FamilyPayConstants;
 import constants.PaymentErrorCodes;
 import constants.TimeConstants;
 import org.junit.Before;
@@ -12,18 +11,12 @@ import static org.junit.Assert.*;
 public class BabysitterTest {
     private static final int ONE_HOUR = 1;
     private BabysitterTimesheet babysitterTimesheet;
-    private FamilyCodeA familyCodeA;
-    private FamilyCodeB familyCodeB;
-    private FamilyCodeC familyCodeC;
     private FamilyCodeFake familyCodeFake;
 
     @Before
     public void setup() {
-       babysitterTimesheet = new BabysitterTimesheet();
-       familyCodeA = new FamilyCodeA();
-       familyCodeB = new FamilyCodeB();
-       familyCodeC = new FamilyCodeC();
-       familyCodeFake = new FamilyCodeFake();
+        babysitterTimesheet = new BabysitterTimesheet();
+        familyCodeFake = new FamilyCodeFake();
     }
 
     @Test
@@ -115,8 +108,8 @@ public class BabysitterTest {
         boolean actual = babysitterTimesheet.isValidTimePeriod(19, 18);
         assertFalse(actual);
     }
-	
-	@Test
+
+    @Test
     public void givenValidStartTimeEndTimeWhenBothAreAfterMidnightReturnTrue() {
         boolean actual = babysitterTimesheet.isValidTimePeriod(2, 4);
         assertTrue(actual);

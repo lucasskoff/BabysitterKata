@@ -1,6 +1,5 @@
 package test;
 
-import code.FamilyCodeA;
 import code.FamilyCodeB;
 import code.FamilyInterface;
 import constants.FamilyPayConstants;

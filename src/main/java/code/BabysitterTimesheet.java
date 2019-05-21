@@ -21,16 +21,16 @@ public class BabysitterTimesheet {
     }
 
     public int computePay(int startTime, int endTime, FamilyInterface familyCode) {
-        if(!isValidTimePeriod(startTime, endTime)) {
+        if (!isValidTimePeriod(startTime, endTime)) {
             return PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
         }
-        if(familyCode == null) {
+        if (familyCode == null) {
             return PaymentErrorCodes.INVALID_FAMILY_CODE_ERROR_CODE;
         }
         int modifiedEndTime = normalizeTime(endTime);
-		int modifiedStartTime = normalizeTime(startTime);
+        int modifiedStartTime = normalizeTime(startTime);
         int payAmount = 0;
-        for(int i = modifiedStartTime; i < modifiedEndTime; i++) {
+        for (int i = modifiedStartTime; i < modifiedEndTime; i++) {
             payAmount += familyCode.computePay(i);
         }
         return payAmount;
