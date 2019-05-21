@@ -149,7 +149,8 @@ public class BabysitterTest {
 
     @Test
     public void givenInvalidStartTimeEndTimeForFamilyAReturnError() {
-        int actual = babysitterTimesheet.computePay(16, 16, familyCodeA);
+        FamilyInterface familyFake = new FamilyCodeFake();
+        int actual = babysitterTimesheet.computePay(16, 16, familyFake);
         int expected = PaymentErrorCodes.INVALID_HOURS_ERROR_CODE;
         assertEquals(expected, actual);
     }

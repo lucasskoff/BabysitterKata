@@ -25,4 +25,11 @@ public class FamilyCodeATest {
         int expected = FamilyPayConstants.FAMILY_A_BASE_PAY;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void givenTimeAfter11ReturnFamilyCodeATimeAfter11Pay() {
+        int actual = familyCodeA.computePay(TimeConstants.ELEVEN_PM + 1);
+        int expected = FamilyPayConstants.FAMILY_A_POST_11_PAY;
+        assertEquals(expected, actual);
+    }
 }
